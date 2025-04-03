@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage(" Code Clone "){
             steps{
-                git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git", poll: true, changelog: true
+        git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git"
             }
         }
         stage("Code Build "){
