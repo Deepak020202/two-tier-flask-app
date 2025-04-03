@@ -23,17 +23,6 @@ pipeline {
             }
         }
     }
-
-   /* post {
-        success {
-            emailext to: 'deepakpatel1029@gmail.com',
-                     body: 'Successfully pipeline build for flask app',
-                     subject: 'Build Successful'
-        }
-        failure {
-            emailext to: 'deepakpatel1029@gmail.com',
-                     body: 'Pipeline failed for flask app',
-                     subject: 'Build Failed'
-        } */
+    
     }
 }
