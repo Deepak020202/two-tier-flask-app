@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage(" Code Clone "){
             steps{
-        git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git"
+                git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git", poll: true, changelog: true
             }
         }
         stage("Code Build "){
@@ -18,7 +18,6 @@ pipeline {
         }
         stage("code deploy"){
             steps{
-                sh ' docker-compose down'
                 sh 'docker-compose up -d'
             }
         }
