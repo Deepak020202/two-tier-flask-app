@@ -12,7 +12,7 @@ pipeline {
 
         stage('File System Scan') {
             steps {
-                trivy_fs()
+                trivy()
             }
         }
 
