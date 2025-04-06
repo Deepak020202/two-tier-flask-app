@@ -4,34 +4,30 @@ pipeline {
     stages {
         stage("Code Clone") {
             steps {
-                git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git"
+                script{
+                    clone ("https://github.com/Deepak020202/two-tier-flask-app.git , master")
             }
         }
        
         stage("File System Scan ") {
-            steps {
-                sh "trivy fs . -o Image_Result.json"
+              script{
+                    trivy_fs()
             }
         }
 
         stage("Code Build") {
             steps {
+                script{
                 sh "docker build -t flask-app ."
+                }
             }
         }
 
         stage("Push to Docker Hub") {
             steps {
-                withCredentials([usernamePassword(
-                    credentialsId: "DockerHubCreds",
-                    usernameVariable: "DockerHubUser",
-                    passwordVariable: "DockerHubPass"
-                    )]){
-                        sh "docker login -u ${env.DockerHubUser} -p ${env.DockerHubPass}"
-                        sh "docker image tag flask-app ${env.DockerHubUser}/flask-app"
-                        sh "docker push ${env.DockerHubUser}/flask-app:latest"
-                    }
-               
+                script {
+                docker_push("DockerHubCreds" , "flask-app")
+                }  
             }
         }
 
