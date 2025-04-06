@@ -18,7 +18,7 @@ pipeline {
                 returnStatus: true
             )
 
-            if (scanOutput != 10) {
+            if (scanOutput != 1) {
                 error("Critical vulnerabilities found in file system scan.")
             } else {
                 echo "No critical vulnerabilities detected."
