@@ -7,7 +7,7 @@ pipeline {
                 git branch: "master", url: "https://github.com/Deepak020202/two-tier-flask-app.git"
             }
         }
-        stages {
+       
         stage("File System Scan ") {
             steps {
                 sh "trivy fs . -o Image_Result.json"
