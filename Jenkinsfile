@@ -11,21 +11,10 @@ pipeline {
         }
 
        stage('File System Scan') {
-    steps {
-        script {
-            def scanOutput = sh(
-                script: 'trivy fs --severity CRITICAL --exit-code 1 .',
-                returnStatus: true
-            )
-
-            if (scanOutput != 1) {
-                error("Critical vulnerabilities found in file system scan.")
-            } else {
-                echo "No critical vulnerabilities detected."
+            steps {
+                trivy()
             }
         }
-    }
-}
 
 
         stage('Code Build') {
