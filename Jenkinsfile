@@ -1,4 +1,5 @@
-@Liabrary ("Shared-Liabraries") _
+@Library('Shared-Libraries') _
+
 pipeline { 
     agent { label "linux" }
 
