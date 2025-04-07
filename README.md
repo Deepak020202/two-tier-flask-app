@@ -3,7 +3,8 @@
 🔗 [LinkedIn – Deepak Patel](https://www.linkedin.com/in/deepakpatel02/)
 
 ## 📌 Project Architecture
-https://drive.google.com/file/d/1I3a_TYMlC1bwM5Smqi5JbKfpfZStmZU9/view
+
+![download](https://github.com/user-attachments/assets/94a89dff-edfc-4977-834f-57d84bcc685d)
 
 ---
 ## 📌 Project documentation link
