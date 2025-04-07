@@ -1,130 +1,118 @@
- 
-# Flask App with MySQL Docker Setup
+# 🚀 Two-Tier Flask App Deployment
 
-This is a simple Flask app that interacts with a MySQL database. The app allows users to submit messages, which are then stored in the database and displayed on the frontend.
+🔗 [LinkedIn – Deepak Patel](https://www.linkedin.com/in/deepakpatel02/)
 
-## Prerequisites
+## 📌 Project Architecture
+---![TwoTierFlaskAppFinal](https://github.com/user-attachments/assets/2acfbb5b-0a9c-40bb-a758-af0eb4d128c0)
 
-Before you begin, make sure you have the following installed:
+---
+## 📌 Project documentation link
 
-- Docker
-- Git (optional, for cloning the repository)
+---
 
-## Setup
+## 📄 Project Description
 
-1. Clone this repository (if you haven't already):
+This project demonstrates the implementation of a CI/CD pipeline for deploying a two-tier Flask web application. The process is fully automated using Jenkins and Docker, with security checks integrated via Trivy. The pipeline follows best DevOps practices, including:
 
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
+- Developers push code to GitHub.
+- Jenkins Master on EC2 triggers the pipeline and delegates tasks to Jenkins Agent.
+- Jenkins Agent performs a file system vulnerability scan using Trivy.
+- Docker image is built, tested, and pushed to Docker Hub.
+- The latest Docker image is deployed using Docker Compose.
 
-2. Navigate to the project directory:
+This setup ensures continuous integration, continuous delivery, and security throughout the software delivery lifecycle.
 
-   ```bash
-   cd your-repo-name
-   ```
+---
 
-3. Create a `.env` file in the project directory to store your MySQL environment variables:
+## 🛠️ Tools & Technologies
 
-   ```bash
-   touch .env
-   ```
+- **Jenkins** – CI/CD automation server (master/agent setup)
+- **Trivy** – Vulnerability scanner for secure builds
+- **Docker** – Containerization of the application
+- **Docker Hub** – Container registry for image storage
+- **GitHub** – Source code repository
+- **EC2 (AWS)** – Hosting Jenkins master and agent nodes
 
-4. Open the `.env` file and add your MySQL configuration:
+---
 
-   ```
-   MYSQL_HOST=mysql
-   MYSQL_USER=your_username
-   MYSQL_PASSWORD=your_password
-   MYSQL_DB=your_database
-   ```
+## 🔄 Project Workflow
 
-## Usage
+### Step 1: Create EC2 Instances  
+Create **2 EC2 instances** – one for Jenkins master, one for Jenkins agent.
 
-1. Start the containers using Docker Compose:
+---
 
-   ```bash
-   docker-compose up --build
-   ```
+### Step 2: Setup Jenkins Master Node  
+Install Jenkins, configure firewall, plugins, and create initial admin credentials.
 
-2. Access the Flask app in your web browser:
+---
 
-   - Frontend: http://localhost
-   - Backend: http://localhost:5000
+### Step 3: Setup Jenkins Agent Node  
+Connect agent node using SSH credentials or a static agent configuration to perform pipeline tasks.
 
-3. Create the `messages` table in your MySQL database:
+---
 
-   - Use a MySQL client or tool (e.g., phpMyAdmin) to execute the following SQL commands:
-   
-     ```sql
-     CREATE TABLE messages (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         message TEXT
-     );
-     ```
+### Step 4: Create Jenkins Job  
+- Create a new pipeline job.
+- Add your Jenkinsfile to the job (from SCM or inline).
 
-4. Interact with the app:
+---
 
-   - Visit http://localhost to see the frontend. You can submit new messages using the form.
-   - Visit http://localhost:5000/insert_sql to insert a message directly into the `messages` table via an SQL query.
+### Step 5: Generate Docker Hub PAT  
+- Login to [Docker Hub](https://hub.docker.com).
+- Generate a **Personal Access Token** to push images securely.
 
-## Cleaning Up
+---
 
-To stop and remove the Docker containers, press `Ctrl+C` in the terminal where the containers are running, or use the following command:
+### Step 6: Add Credentials to Jenkins  
+- Go to:Jenkins → Manage Jenkins → Credentials → Global → Add Credentials
+- Add DockerHub username and PAT.
 
-```bash
-docker-compose down
-```
+---
 
-## To run this two-tier application using  without docker-compose
+### Step 7: Build the Pipeline  
+- Trigger the pipeline manually.
+- Observe stages: clone, scan, build, push, deploy.
 
-- First create a docker image from Dockerfile
-```bash
-docker build -t flaskapp .
-```
+---
 
-- Now, make sure that you have created a network using following command
-```bash
-docker network create twotier
-```
+### Step 8: Check Container Status  
+Use `docker ps` on your Jenkins agent to confirm containers are up and running.
 
-- Attach both the containers in the same network, so that they can communicate with each other
+---
 
-i) MySQL container 
-```bash
-docker run -d \
-    --name mysql \
-    -v mysql-data:/var/lib/mysql \
-    --network=twotier \
-    -e MYSQL_DATABASE=mydb \
-    -e MYSQL_ROOT_PASSWORD=admin \
-    -p 3306:3306 \
-    mysql:5.7
+### Step 9: Open Flask App in Browser  
+- Allow **port 5000** in your EC2 security group.
+- Access your Flask app using:  
+  `http://<EC2_PUBLIC_IP>:5000`
 
-```
-ii) Backend container
-```bash
-docker run -d \
-    --name flaskapp \
-    --network=twotier \
-    -e MYSQL_HOST=mysql \
-    -e MYSQL_USER=root \
-    -e MYSQL_PASSWORD=admin \
-    -e MYSQL_DB=mydb \
-    -p 5000:5000 \
-    flaskapp:latest
+---
 
-```
+### Step 10: Add GitHub Webhook  
+Set up webhook in GitHub to automatically trigger the pipeline on push.
 
-## Notes
+---
 
-- Make sure to replace placeholders (e.g., `your_username`, `your_password`, `your_database`) with your actual MySQL configuration.
+### Step 11: Use Script from SCM  
+Link your GitHub repo in the pipeline job to use the Jenkinsfile directly from source control.
 
-- This is a basic setup for demonstration purposes. In a production environment, you should follow best practices for security and performance.
+---
 
-- Be cautious when executing SQL queries directly. Validate and sanitize user inputs to prevent vulnerabilities like SQL injection.
+### Step 12: Install Trivy  
+Install Trivy on the Jenkins agent to perform file system vulnerability scans.
 
-- If you encounter issues, check Docker logs and error messages for troubleshooting.
+---
 
-```
+### Step 13: Jenkinsfile Testing  
+Make code changes and push to GitHub to validate the pipeline re-runs and reflects updates.
+
+---
+
+## ✅ Conclusion
+
+This project showcases a practical DevOps workflow to deploy secure and scalable Flask applications. By integrating **Trivy** into the CI/CD pipeline, it ensures that **security scanning is automated** before deployment. The **Jenkins master-agent** model allows efficient build orchestration, and **Docker** simplifies application packaging and delivery. This architecture is ideal for **small to medium-scale deployments** with strong automation needs.
+
+---
+
+🔧 Happy Automating!
 
