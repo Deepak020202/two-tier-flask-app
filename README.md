@@ -4,7 +4,7 @@
 
 ## 📌 Project Architecture
 
-![download](https://github.com/user-attachments/assets/94a89dff-edfc-4977-834f-57d84bcc685d)
+![TwoTierFlaskAppFinal](https://github.com/user-attachments/assets/9e14ceb0-e049-451b-bffa-1118530f8a8a)
 
 ---
 ## 📌 Project documentation link
