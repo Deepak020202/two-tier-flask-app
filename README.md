@@ -114,5 +114,5 @@ This project showcases a practical DevOps workflow to deploy secure and scalable
 
 ---
 
-🔧 Happy Automating!
+🔧 Happy Learning!
 
