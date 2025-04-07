@@ -2,9 +2,10 @@
 
 🔗 [LinkedIn – Deepak Patel](https://www.linkedin.com/in/deepakpatel02/)
 
-## 📌 Project Architecture
+## 📌 Project Architecture:
 
-![TwoTierFlaskAppFinal](https://github.com/user-attachments/assets/9e14ceb0-e049-451b-bffa-1118530f8a8a)
+
+![TwoTierFlaskApp drawio](https://github.com/user-attachments/assets/e65b82a8-b4f6-44ba-b84b-f5990b142772)
 
 ---
 ## 📌 Project documentation link
