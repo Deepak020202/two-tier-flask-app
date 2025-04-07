@@ -3,11 +3,14 @@
 🔗 [LinkedIn – Deepak Patel](https://www.linkedin.com/in/deepakpatel02/)
 
 ## 📌 Project Architecture
----![TwoTierFlaskAppFinal](https://github.com/user-attachments/assets/2acfbb5b-0a9c-40bb-a758-af0eb4d128c0)
+https://drive.google.com/file/d/1I3a_TYMlC1bwM5Smqi5JbKfpfZStmZU9/view
 
 ---
 ## 📌 Project documentation link
-
+https://drive.google.com/file/d/1x4XEl0IR2uMT_TcBvs96h7oYql20fw-Q/view
+---
+## 📌 Project Implementation link
+https://drive.google.com/file/d/1I3a_TYMlC1bwM5Smqi5JbKfpfZStmZU9/view?usp=drivesdk
 ---
 
 ## 📄 Project Description
